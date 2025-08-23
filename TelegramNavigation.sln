@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramNavigation", "TelegramNavigation\TelegramNavigation.csproj", "{DDD78DD2-F3AF-4964-9A1F-B97FA3D31808}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleBot", "ExampleBot\ExampleBot.csproj", "{EA60F03A-160C-4776-8ABD-8E9AFC7D9A0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDD78DD2-F3AF-4964-9A1F-B97FA3D31808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDD78DD2-F3AF-4964-9A1F-B97FA3D31808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDD78DD2-F3AF-4964-9A1F-B97FA3D31808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDD78DD2-F3AF-4964-9A1F-B97FA3D31808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA60F03A-160C-4776-8ABD-8E9AFC7D9A0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA60F03A-160C-4776-8ABD-8E9AFC7D9A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA60F03A-160C-4776-8ABD-8E9AFC7D9A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA60F03A-160C-4776-8ABD-8E9AFC7D9A0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EA60F03A-160C-4776-8ABD-8E9AFC7D9A0B} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {446D6710-37D2-4AF7-8970-D1E506E311C8}
+	EndGlobalSection
+EndGlobal

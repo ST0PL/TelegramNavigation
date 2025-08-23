@@ -1,4 +1,8 @@
 # Telegram Navigation
+
+![.NET 9.0](https://img.shields.io/badge/.NET-9.0-8A2BE2)
+[![NuGet Version](https://img.shields.io/nuget/v/TelegramNavigation)](https://www.nuget.org/packages/TelegramNavigation)
+
 Telegram Navigation is .NET library based on [.NET Client for Telegram Bot API](https://github.com/TelegramBots/Telegram.Bot) to enchance creating navigation and multi-level telegram menus experience.
 # Getting started
 ### Create inline button

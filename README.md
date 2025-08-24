@@ -7,20 +7,29 @@ Telegram Navigation is .NET library based on [.NET Client for Telegram Bot API](
 # Getting started
 ### Create inline button
 ```csharp
-var bot = new TelegramBotClient("<YOUR API TOKEN>");
+var bot = new TelegramBotClient("<YOUR TOKEN>");
 
 var inlineButton = InlineMiddleware.CreateButton("my button",
-    async (route, bot, msg, from ) =>
+    async (route, bot, msg, from) =>
     {
-        await bot.SendMessage(msg.Chat.Id, "\"my button\" pressed!");
+        await bot.EditMessageText(msg.Chat.Id, msg.Id,
+            $"\"my button\" with myArgument = {{{route.Args?["myArgument"]}}} pressed!");
         // your logic...
-    });
+    }, new() { ["myArgument"] = "some data" });
+
 
 await bot.SendMessage(chatId, "Message with inline button", replyMarkup: inlineButton.Button);
+
+await bot.ReceiveAsync(async (bot, update, ct) =>
+{
+    if (update.Type == UpdateType.CallbackQuery)
+        await InlineMiddleware.HandleAsync(bot, update.CallbackQuery!);
+}, (bot, ex, ct) => Console.WriteLine(ex));
 ```
 ### Create message hook
 ```csharp
 var bot = new TelegramBotClient("<YOUR API TOKEN>");
+
 var messageHandler = new MessageHandler();
 
 messageHandler.RegisterHook(targetChatId, targetUserId,

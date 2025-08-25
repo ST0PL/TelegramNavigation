@@ -19,7 +19,7 @@
     <PackageId>TelegramNavigation</PackageId>
     <Authors>ST0PL</Authors>
     <Copyright>Copyright © ST0PL 2025</Copyright>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.1</Version>
     <PackageProjectUrl>https://github.com/ST0PL/TelegramNavigation</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ST0PL/TelegramNavigation.git</RepositoryUrl>
@@ -29,12 +29,6 @@
 
   <ItemGroup>
     <PackageReference Include="Telegram.Bot" Version="22.6.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="media.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

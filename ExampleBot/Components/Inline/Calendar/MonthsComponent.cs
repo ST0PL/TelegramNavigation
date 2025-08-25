@@ -2,6 +2,7 @@
 
 namespace ExampleBot.Components.Inline.Calendar
 {
+    [InlineComponent(name: "months")]
     internal class MonthsComponent : IInlineQueryComponent
     {
         private readonly string[] _months = DateTimeFormatInfo.InvariantInfo.AbbreviatedMonthNames;

@@ -4,8 +4,8 @@ namespace ExampleBot.Database
 {
     internal class MediaContext : DbContext
     {
-        public DbSet<MediaType>? Types { get; set; }
-        public DbSet<Media>? Media { get; set; }
+        public DbSet<MediaType> Types { get; set; }
+        public DbSet<Media> Media { get; set; }
 
         public MediaContext()
             => Database.EnsureCreated();

@@ -4,6 +4,7 @@ using Telegram.Bot.Extensions;
 
 namespace ExampleBot.Components.Inline.Catalog
 {
+    [InlineComponent(name: "media")]
     internal class MediaComponent : IInlineQueryComponent
     {
         private readonly Dictionary<string, InlineQueryHook> _routes;
@@ -25,16 +26,16 @@ namespace ExampleBot.Components.Inline.Catalog
             using var dbContext = new MediaContext();
             var type = dbContext.Types.Find(int.Parse(queryRoute.Args["id"]));
 
-            var media = dbContext.Media.Where(m=>m.MediaTypeId == type.Id);
+            var media = type is { } ? dbContext.Media.Where(m=>m.MediaTypeId == type.Id) : null;
 
-            var mediaCount = media.Count();
+            var mediaCount = media?.Count() ?? 0;
 
             var botMessage = await botClient.SendMessage(chatId, "Loading...", messageThreadId: messageThreadId);
 
             if (mediaCount > 0)
             {
 
-                var page = InlineMiddleware.CreatePage(botMessage.Chat.Id, botMessage.MessageId, mediaCount, 1, "media");
+                var page = InlineMiddleware.CreatePage(botMessage.Chat.Id, botMessage.MessageId, mediaCount, 1);
 
                 return await botClient.EditMessageText(botMessage.Chat.Id, botMessage.Id,
                     GetText(media.Skip(page.Offset).Take(page.ElementsCount).ToList(), page.CurrentPage, page.NextPage),
@@ -61,9 +62,7 @@ namespace ExampleBot.Components.Inline.Catalog
             if (typesCount > 0)
             {
 
-                var page = InlineMiddleware.CreatePage(message.Chat.Id, message.Id, typesCount, 1, "media");
-                
-                page ??= InlineMiddleware.GetPage(message.Chat.Id, message.Id);
+                var page = InlineMiddleware.CreatePage(message.Chat.Id, message.Id, typesCount, 1);
 
                 await botClient.EditMessageText(message.Chat.Id, message.Id,
                     GetText(media.Skip(page.Offset).Take(page.ElementsCount).ToList(), page.CurrentPage, page.PagesCount),
@@ -82,7 +81,7 @@ namespace ExampleBot.Components.Inline.Catalog
         public async Task MoveBack(Route queryRoute, ITelegramBotClient botClient, Message message, User user)
         {
 
-            var page = InlineMiddleware.GetPage(message.Chat.Id, message.MessageId, "media");
+            var page = InlineMiddleware.GetPage(message.Chat.Id, message.MessageId);
             page.MoveBack();
 
             var (media, type) = GetData(page, int.Parse(queryRoute.Args["id"]));
@@ -95,7 +94,7 @@ namespace ExampleBot.Components.Inline.Catalog
 
         public async Task MoveNext(Route queryRoute, ITelegramBotClient botClient, Message message, User user)
         {
-            var page = InlineMiddleware.GetPage(message.Chat.Id, message.MessageId, "media");
+            var page = InlineMiddleware.GetPage(message.Chat.Id, message.MessageId);
             page.MoveNext();
 
             var (media, type) = GetData(page, int.Parse(queryRoute.Args["id"]));
@@ -148,7 +147,7 @@ namespace ExampleBot.Components.Inline.Catalog
                 Text = page?.NextPage > -1 ? ">>" : " ",
                 CallbackData = page?.NextPage > -1 ? new Route("media", "/moveNext", new() { ["meta"] = string.Empty,  ["id"] = type.Id.ToString() }).ToString() : "none"
             });
-            InlineMiddleware.GetBackAndCloseButtons("Back", "Close", chatId, messageId)
+            InlineMiddleware.GetBackAndCloseButtons("Back", "Close", chatId, messageId, page is { }) // if the page exists then delete it on return
                 .ForEach(row=>row.ForEach(btn=>markup.AddNewRow(btn)));
 
             return markup;

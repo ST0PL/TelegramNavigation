@@ -1,5 +1,6 @@
 ﻿namespace ExampleBot.Components.Inline.Calendar
 {
+    [InlineComponent(name: "years")]
     internal class YearsComponent : IInlineQueryComponent
     {
         private readonly Dictionary<string, InlineQueryHook> _routes;

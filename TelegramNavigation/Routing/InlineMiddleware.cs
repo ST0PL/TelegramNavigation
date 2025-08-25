@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Reflection;
 
 namespace TelegramNavigation.Routing
 {
@@ -385,10 +386,14 @@ namespace TelegramNavigation.Routing
         /// <summary>
         /// Register <see cref="IInlineQueryComponent"/> component with specified <see cref="Route"/> type
         /// </summary>
-        /// <param name="type"></param>
         /// <param name="inlineQueryComponent"></param>
-        public static void RegisterComponent(string type, IInlineQueryComponent inlineQueryComponent)
-            => Components.Add(type, inlineQueryComponent);
+        public static void RegisterComponent(IInlineQueryComponent inlineQueryComponent)
+        {
+            var attribute = inlineQueryComponent.GetType().GetCustomAttribute<InlineComponentAttribute>() ??
+                throw new NullReferenceException("InlineComponentAttribute not found");
+
+            Components.Add(attribute.Name, inlineQueryComponent);
+        }
 
         /// <summary>
         /// Unregister <see cref="IInlineQueryComponent"/> component by specified <see cref="Route"/> type

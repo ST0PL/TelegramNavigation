@@ -15,12 +15,12 @@ namespace ExampleBot.Handlers
 
         public UpdateHandler()
         {
-            InlineMiddleware.RegisterComponent("standard", new StandardComponent(MessageHandler));
-            InlineMiddleware.RegisterComponent("years", new YearsComponent());
-            InlineMiddleware.RegisterComponent("months", new MonthsComponent());
-            InlineMiddleware.RegisterComponent("days", new DaysComponent());
-            InlineMiddleware.RegisterComponent("types", new TypesComponent());
-            InlineMiddleware.RegisterComponent("media", new MediaComponent());
+            InlineMiddleware.RegisterComponent(new StandardComponent(MessageHandler));
+            InlineMiddleware.RegisterComponent(new YearsComponent());
+            InlineMiddleware.RegisterComponent(new MonthsComponent());
+            InlineMiddleware.RegisterComponent(new DaysComponent());
+            InlineMiddleware.RegisterComponent(new TypesComponent());
+            InlineMiddleware.RegisterComponent(new MediaComponent());
             MessageHandler.RegisterCommand("start", new StartCommandHandler());
             MessageHandler.RegisterReplyButton("Calendar", new CalendarButtonHandler());
             MessageHandler.RegisterReplyButton("Tic-Tac-Toe", new TicTacToeButtonHandler());

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExampleBot.Components.Inline.Catalog
 {
+    [InlineComponent(name: "types")]
     internal class TypesComponent : IInlineQueryComponent, IInlinePageComponent
     {
         private readonly Dictionary<string, InlineQueryHook> _routes;
@@ -26,7 +27,7 @@ namespace ExampleBot.Components.Inline.Catalog
             var typesCount = types.Count();
             if(typesCount > 0)
             {
-                var page = InlineMiddleware.CreatePage(botMessage.Chat.Id, botMessage.MessageId, typesCount, 1, "types");
+                var page = InlineMiddleware.CreatePage(botMessage.Chat.Id, botMessage.MessageId, typesCount, 1);
 
                 return await botClient.EditMessageText(botMessage.Chat.Id, botMessage.Id,
                     "_Select type_",
@@ -44,13 +45,11 @@ namespace ExampleBot.Components.Inline.Catalog
         {
             using var dbContext = new MediaContext();
             var types = dbContext.Types;
-            int typesCount = types.Count();
+            int typesCount = types?.Count() ?? 0;
 
             if(typesCount > 0)
             {
-                var page = InlineMiddleware.GetPage(message.Chat.Id, message.MessageId, "types");
-
-                page ??= InlineMiddleware.CreatePage(message.Chat.Id, message.MessageId, typesCount, 1, "types");
+                var page = InlineMiddleware.GetPage(message.Chat.Id, message.MessageId);
 
                 await botClient.EditMessageText(message.Chat.Id, message.Id,
                     "_Select type_",
@@ -67,7 +66,7 @@ namespace ExampleBot.Components.Inline.Catalog
         {
             using var dbContext = new MediaContext();
             var types = dbContext.Types;
-            var page = InlineMiddleware.GetPage(message.Chat.Id, message.MessageId, "types");
+            var page = InlineMiddleware.GetPage(message.Chat.Id, message.MessageId);
             page.MoveBack();
             await botClient.EditMessageReplyMarkup(message.Chat.Id, message.Id,
                 replyMarkup: await GetMarkup(page, types));
@@ -77,7 +76,7 @@ namespace ExampleBot.Components.Inline.Catalog
         {
             using var dbContext = new MediaContext();
             var types = dbContext.Types;
-            var page = InlineMiddleware.GetPage(message.Chat.Id, message.MessageId, "types");
+            var page = InlineMiddleware.GetPage(message.Chat.Id, message.MessageId);
             page.MoveNext();
             await botClient.EditMessageReplyMarkup(message.Chat.Id, message.Id,
                 replyMarkup: await GetMarkup(page, types));

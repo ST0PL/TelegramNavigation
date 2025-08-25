@@ -2,6 +2,7 @@
 
 namespace ExampleBot.Components.Inline.Calendar
 {
+    [InlineComponent(name: "days")]
     internal class DaysComponent : IInlineQueryComponent
     {
         private readonly string[] _daysOfWeek = DateTimeFormatInfo.InvariantInfo.AbbreviatedDayNames;

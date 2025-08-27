@@ -13,7 +13,7 @@ There are two types of buttons in Telegram: `Reply` and `Inline`.
 
 `Reply` buttons are located under the input area. When pressed, a message with the button text is sent. In groups where the bot does not have access to messages, it can still recognize the text sent by the user after pressing the Reply button.
 
-`Inline` buttons are located under the message sent by the bot. They contain `CallbackData` - text information up to 64 bytes long. When the `Inline` button is pressed, the bot receives an Update of the CallbackQuery type, containing a message with a button and the specified CallbackData.
+`Inline` buttons are located under the message sent by the bot. They contain `CallbackData` - text information up to 64 bytes long. When the `Inline` button is pressed, the bot receives an Update of the `CallbackQuery` type, containing a message with a button and the specified `CallbackData`.
 
 If everything is clear with `Reply` buttons (it is enough to process the text and perform the appropriate actions), then `Inline` buttons allow you to create complex menus and multi-level navigation. `CallbackQuery` stores a message with a button, which allows you to change its contents and control the interface. To organize such multi-level logic, you need to pass information identifying the component and its arguments inside CallbackData.
 

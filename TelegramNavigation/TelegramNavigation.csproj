@@ -25,6 +25,9 @@
     <RepositoryUrl>https://github.com/ST0PL/TelegramNavigation.git</RepositoryUrl>
     <PackageTags>Telegram;Bot;Inline</PackageTags>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <PackageReleaseNotes>- Added `InlineComponent` attribute
+- Removed `type` argument in `InlineMiddleware.RegisterComponent` method
+- Changes in [ExampleBot](https://github.com/ST0PL/TelegramNavigation/tree/main/ExampleBot) project related to `InlineComponent` attribute and small fixes</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

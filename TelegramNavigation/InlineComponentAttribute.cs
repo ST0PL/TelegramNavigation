@@ -3,7 +3,6 @@
     /// <summary>
     /// Attribute for naming components
     /// </summary>
-    /// <param name="name"></param>
     [AttributeUsage(AttributeTargets.Class)]
     public class InlineComponentAttribute : Attribute
     {

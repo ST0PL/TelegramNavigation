@@ -20,18 +20,18 @@
     <PackageId>TelegramNavigation</PackageId>
     <Authors>ST0PL</Authors>
     <Copyright>Copyright © ST0PL 2025</Copyright>
-    <Version>2.0.2</Version>
+    <Version>2.0.3</Version>
     <PackageProjectUrl>https://github.com/ST0PL/TelegramNavigation</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ST0PL/TelegramNavigation.git</RepositoryUrl>
     <PackageTags>Telegram;Bot;Inline</PackageTags>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <PackageReleaseNotes>
-		Update Telegram.Bot to v22.7.4 and Microsoft.EntityFrameworkCore.Sqlite to v9.0.10</PackageReleaseNotes>
+		Updated Telegram.Bot to v22.8.0. Removed unused code from Route class.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Telegram.Bot" Version="22.7.4" />
+    <PackageReference Include="Telegram.Bot" Version="22.8.0" />
   </ItemGroup>
   <ItemGroup>
 	  <None Include="..\README.md" Pack="true" PackagePath="\" />

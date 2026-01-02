@@ -92,14 +92,11 @@
         private Task ChangeRadioGroup(Route route, ITelegramBotClient botClient, Message message, User from)
         {
             int index = int.Parse(route.Args["index"]);
-            if (!_group[index])
-            {
-                _group[index] = true;
+            _group[index] = true;
 
-                for (int i = 0; i < _group.Length; i++)
-                    if(index != i)
-                        _group[i] = false;
-            }
+            for (int i = 0; i < _group.Length; i++)
+                if (index != i)
+                    _group[i] = false;
 
             return Task.CompletedTask;
         }
@@ -113,8 +110,11 @@
         private InlineKeyboardButton AddStateButton(string text, InlineQueryHook handler, Dictionary<string, string>? args = null)
             => AddButton(text, async (route, bot, msg, from) =>
             {
-                await handler.Invoke(route, bot, msg, from);
-                await bot.EditMessageReplyMarkup(msg.Chat.Id, msg.Id, GetMarkup());
+                if (!_group[int.Parse(route.Args["index"])])
+                {
+                    await handler.Invoke(route, bot, msg, from);
+                    await bot.EditMessageReplyMarkup(msg.Chat.Id, msg.Id, GetMarkup());
+                }
             }, args);
     }
 }

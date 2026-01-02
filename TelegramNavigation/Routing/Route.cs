@@ -43,12 +43,6 @@ namespace TelegramNavigation.Routing
         public static explicit operator string(Route route)
             => route.ToString();
 
-        //public string ToBase64String()
-        //    => Convert.ToBase64String(Encoding.UTF8.GetBytes(ToString()));
-
-        //public static string FromBase64String(string base64text)
-        //    => Encoding.UTF8.GetString(Convert.FromBase64String(base64text));
-
         /// <summary>
         /// Converts a text presenetation of route to the <see cref="Route"/> instance
         /// </summary>

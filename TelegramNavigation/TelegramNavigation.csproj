@@ -19,19 +19,19 @@
     <Description>TelegramNavigation is .NET library based on .NET Client for Telegram Bot API to enchance creating navigation and multi-level telegram menus experience.</Description>
     <PackageId>TelegramNavigation</PackageId>
     <Authors>ST0PL</Authors>
-    <Copyright>Copyright © ST0PL 2025</Copyright>
-    <Version>2.0.3</Version>
+    <Copyright>Copyright © ST0PL 2026</Copyright>
+    <Version>2.0.4</Version>
     <PackageProjectUrl>https://github.com/ST0PL/TelegramNavigation</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ST0PL/TelegramNavigation.git</RepositoryUrl>
     <PackageTags>Telegram;Bot;Inline</PackageTags>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <PackageReleaseNotes>
-		Updated Telegram.Bot to v22.8.0. Removed unused code from Route class.</PackageReleaseNotes>
+		Updated Telegram.Bot to v22.8.1.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Telegram.Bot" Version="22.8.0" />
+    <PackageReference Include="Telegram.Bot" Version="22.8.1" />
   </ItemGroup>
   <ItemGroup>
 	  <None Include="..\README.md" Pack="true" PackagePath="\" />

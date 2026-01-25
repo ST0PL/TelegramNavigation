@@ -110,7 +110,7 @@
         private InlineKeyboardButton AddStateButton(string text, InlineQueryHook handler, Dictionary<string, string>? args = null)
             => AddButton(text, async (route, bot, msg, from) =>
             {
-                if (!_group[int.Parse(route.Args["index"])])
+                if (!route.Args.ContainsKey("index") || !_group[int.Parse(route.Args["index"])])
                 {
                     await handler.Invoke(route, bot, msg, from);
                     await bot.EditMessageReplyMarkup(msg.Chat.Id, msg.Id, GetMarkup());

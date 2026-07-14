@@ -1,6 +1,7 @@
 ﻿using ExampleBot.Database;
 using System.Text;
 using Telegram.Bot.Extensions;
+using TelegramNavigation.Hooks;
 
 namespace ExampleBot.Components.Inline.Catalog
 {
@@ -115,7 +116,7 @@ namespace ExampleBot.Components.Inline.Catalog
 
         private static string GetText(List<Media> media, int currentPage, int pagesCount)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             if (media.Count > 0)
             {
                 sb.Append($"*Page `{currentPage}` of `{pagesCount}`*\n");

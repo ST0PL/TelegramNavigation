@@ -1,14 +1,15 @@
 ﻿using ExampleBot.Handlers;
 using Telegram.Bot.Extensions;
+using TelegramNavigation.Hooks;
 
 namespace ExampleBot.Components.Forms
 {
     internal class FullNameForm : BaseForm
     {
-        private readonly List<string> _inlineHooks = new();
-        private readonly List<string> _data = new();
-        private readonly Stack<MessageHook?> _messageHooks = new();
-        private readonly Stack<Message> _messages = new();
+        private readonly List<string> _inlineHooks = [];
+        private readonly List<string> _data = [];
+        private readonly Stack<MessageHook?> _messageHooks = [];
+        private readonly Stack<Message> _messages = [];
 
         private Message? _previousMessage = null;
 

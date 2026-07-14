@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿namespace TelegramNavigation.Hooks;
+
+/// <summary>
 /// A delegate for processing telegram messages
 /// </summary>
 /// <param name="botClient">Telegram bot client</param>

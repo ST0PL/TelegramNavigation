@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
+using TelegramNavigation.Hooks;
 
 namespace TelegramNavigation.Routing
 {
@@ -34,21 +35,21 @@ namespace TelegramNavigation.Routing
         /// <summary>
         /// Registered components
         /// </summary>
-        private static readonly Dictionary<string, IInlineQueryComponent> Components = new();
+        private static readonly Dictionary<string, IInlineQueryComponent> Components = [];
 
         /// <summary>
         /// Registered inline hooks
         /// </summary>
-        private static readonly ConcurrentDictionary<string, InlineHook> InlineHooks = new();
+        private static readonly ConcurrentDictionary<string, InlineHook> InlineHooks = [];
 
         /// <summary>
         /// Callback stacks for menus with navigation logic associated with chat and message ids
         /// </summary>
-        private static readonly ConcurrentDictionary<(long, int), Stack<string>> InlineNavigationStack = new();
+        private static readonly ConcurrentDictionary<(long, int), Stack<string>> InlineNavigationStack = [];
         /// <summary>
         /// Page controllers for menus with pagination logic associated with chat and message ids
         /// </summary>
-        private static readonly ConcurrentDictionary<(long, int), Stack<PageController>> PageStates = new ConcurrentDictionary<(long, int), Stack<PageController>>();
+        private static readonly ConcurrentDictionary<(long, int), Stack<PageController>> PageStates = new();
 
 
         /// <summary>
@@ -225,7 +226,7 @@ namespace TelegramNavigation.Routing
         /// <param name="title"></param>
         /// <returns>Button that close current component</returns>
         public static InlineKeyboardButton GetCloseButton(string title)
-            => new InlineKeyboardButton(title, new Route("standard", "/close", new() { ["meta"] = string.Empty }).ToString());
+            => new(title, new Route("standard", "/close", new() { ["meta"] = string.Empty }).ToString());
 
         /// <summary>
         /// The method creates a two-dimensional list with Back and Close buttons, which placed in separate rows.
@@ -245,7 +246,7 @@ namespace TelegramNavigation.Routing
             int messageId,
             bool removePage = false)
         {
-            List<List<InlineKeyboardButton>> buttons = new();
+            List<List<InlineKeyboardButton>> buttons = [];
             if (GetBackButton(backButtonTitle, chatId, messageId, removePage) is { } backButton)
                 buttons.Add([backButton]);
             buttons.Add([GetCloseButton(closeButtonTitle)]);
@@ -290,8 +291,7 @@ namespace TelegramNavigation.Routing
         {
             var hookId = RegisterHook(handler);
 
-            if (args is null)
-                args = new();
+            args ??= [];
             args.Add("id", hookId);
             args.Add("meta", string.Empty);
 
@@ -337,7 +337,7 @@ namespace TelegramNavigation.Routing
         /// <returns>PageController instance</returns>
         public static PageController CreatePage(long chatId, int messageId, int sourceLength, int elementsPerPage, string? title = null)
         {
-            PageController pageController = new PageController(sourceLength, elementsPerPage, title);
+            PageController pageController = new(sourceLength, elementsPerPage, title);
             if(!PageStates.TryGetValue((chatId, messageId), out var pagesStack))
             {
                 pagesStack = new Stack<PageController>();

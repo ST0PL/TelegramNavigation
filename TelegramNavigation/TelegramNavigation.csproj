@@ -20,18 +20,17 @@
     <PackageId>TelegramNavigation</PackageId>
     <Authors>ST0PL</Authors>
     <Copyright>Copyright © ST0PL 2026</Copyright>
-    <Version>3.0.4</Version>
+    <Version>4.0.4</Version>
     <PackageProjectUrl>https://github.com/ST0PL/TelegramNavigation</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ST0PL/TelegramNavigation.git</RepositoryUrl>
     <PackageTags>Telegram;Bot;Inline</PackageTags>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <PackageReleaseNotes>
-		Updated Telegram.Bot to v22.9.6.1.</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated packages, created TelegramNavigation.Hooks namespace for InlineQueryHook and MesssageHook, used collection and target-typed new expressions</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Telegram.Bot" Version="22.9.6.1" />
+    <PackageReference Include="Telegram.Bot" Version="22.10.1.1" />
   </ItemGroup>
   <ItemGroup>
 	  <None Include="..\README.md" Pack="true" PackagePath="\" />

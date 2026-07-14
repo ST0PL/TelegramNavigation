@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using TelegramNavigation.Hooks;
 
 namespace ExampleBot.Components.Inline.Calendar
 {
@@ -47,7 +48,7 @@ namespace ExampleBot.Components.Inline.Calendar
         {
             var markup = new InlineKeyboardMarkup();
 
-            DateTime datetime = new DateTime(year, month, 1);
+            DateTime datetime = new(year, month, 1);
             int days = DateTime.DaysInMonth(year, month);
             int offsetBefore = ((int)datetime.DayOfWeek) % 7;
             int offsetAfter = (6 - ((int)datetime.DayOfWeek + days - 1) % 7) % 7;

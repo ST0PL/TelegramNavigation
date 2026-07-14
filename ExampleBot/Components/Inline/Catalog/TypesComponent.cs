@@ -1,5 +1,6 @@
 ﻿using ExampleBot.Database;
 using Microsoft.EntityFrameworkCore;
+using TelegramNavigation.Hooks;
 
 namespace ExampleBot.Components.Inline.Catalog
 {

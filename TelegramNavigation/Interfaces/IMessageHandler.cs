@@ -1,4 +1,6 @@
-﻿namespace TelegramNavigation.Interfaces
+﻿using TelegramNavigation.Hooks;
+
+namespace TelegramNavigation.Interfaces
 {
     /// <summary>
     /// A message handler interface

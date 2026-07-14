@@ -1,4 +1,6 @@
-﻿namespace ExampleBot.Components.Forms
+﻿using TelegramNavigation.Hooks;
+
+namespace ExampleBot.Components.Forms
 {
     internal class StateButtonsForm : BaseForm
     {
@@ -6,7 +8,7 @@
         private bool _toggle2 = false;
         private readonly bool[] _group = [true, false, false];
 
-        private readonly List<string> _inlineHooks = new();
+        private readonly List<string> _inlineHooks = [];
 
         private InlineKeyboardButton? _closeButton;
 
@@ -110,7 +112,7 @@
         private InlineKeyboardButton AddStateButton(string text, InlineQueryHook handler, Dictionary<string, string>? args = null)
             => AddButton(text, async (route, bot, msg, from) =>
             {
-                if (!route.Args.ContainsKey("index") || !_group[int.Parse(route.Args["index"])])
+                if (!route.Args.TryGetValue("index", out var index) || !_group[int.Parse(index)])
                 {
                     await handler.Invoke(route, bot, msg, from);
                     await bot.EditMessageReplyMarkup(msg.Chat.Id, msg.Id, GetMarkup());

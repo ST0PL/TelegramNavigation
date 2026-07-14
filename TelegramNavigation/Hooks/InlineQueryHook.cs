@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿namespace TelegramNavigation.Hooks;
+
+/// <summary>
 /// A delegate for processing telegram inline queries
 /// </summary>
 /// <param name="route">Inline query route.</param>

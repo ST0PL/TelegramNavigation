@@ -1,4 +1,6 @@
-﻿namespace TelegramNavigation
+﻿using TelegramNavigation.Hooks;
+
+namespace TelegramNavigation
 {
     /// <summary>
     /// A global inline query component

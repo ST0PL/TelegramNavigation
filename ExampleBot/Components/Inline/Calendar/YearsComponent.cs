@@ -1,4 +1,6 @@
-﻿namespace ExampleBot.Components.Inline.Calendar
+﻿using TelegramNavigation.Hooks;
+
+namespace ExampleBot.Components.Inline.Calendar
 {
     [InlineComponent(name: "years")]
     internal class YearsComponent : IInlineQueryComponent
@@ -39,14 +41,13 @@
         private static InlineKeyboardMarkup GetMarkup(int startYear, int rows, int columns)
         {
             var markup = new InlineKeyboardMarkup();
-            string yearString = string.Empty;
             int offset = 0;
 
             for(int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    yearString = (startYear + offset++).ToString();
+                    string yearString = (startYear + offset++).ToString();
                     markup.AddButton(new InlineKeyboardButton(yearString,
                         new Route("months", "/", new()
                         {
@@ -75,7 +76,7 @@
         }
 
         private static Dictionary<string,string> GetArgs(int startYear, int rows, int columns)
-            => new Dictionary<string, string>()
+            => new()
             {
                 ["year"] = startYear.ToString(),
                 ["rows"] = rows.ToString(),
